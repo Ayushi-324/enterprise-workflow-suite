@@ -1,0 +1,23 @@
+# =============================================================================
+# requirements.txt — pinned production dependencies
+# Pin minor versions (not patch) for security updates without breaking changes
+# =============================================================================
+
+# ── FastAPI core ──────────────────────────────────────────────────────────────
+fastapi==0.115.*
+uvicorn[standard]==0.32.*          # standard extras include uvloop + httptools
+pydantic==2.10.*
+pydantic-settings==2.7.*
+
+# ── Database ──────────────────────────────────────────────────────────────────
+sqlalchemy==2.0.*
+asyncpg==0.30.*                    # async PostgreSQL driver (C extension, very fast)
+alembic==1.14.*                    # schema migrations — use instead of create_all in prod
+
+# ── LlamaIndex — minimal surface area ─────────────────────────────────────────
+llama-index-core==0.12.*
+llama-index-llms-openai==0.3.*    # OpenAI LLM integration (lazy-loaded)
+
+# ── Observability & utils ─────────────────────────────────────────────────────
+python-dotenv==1.0.*               # .env loading for local dev
+httpx==0.28.*                      # async HTTP client (used by TestClient in tests)
